@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class ConfigDB {
     // 1 - First we save the connection state
     public static Connection objConnection = null;
-
     public static Connection openConnection() {
 
         try {
@@ -25,9 +24,6 @@ public class ConfigDB {
 
         return objConnection;
     }
-
-
-
     public static void closeConnection() {
 
         try {
@@ -40,7 +36,5 @@ public class ConfigDB {
         }
 
     }
-
-
 
 }
