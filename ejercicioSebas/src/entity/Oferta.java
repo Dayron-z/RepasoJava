@@ -3,19 +3,11 @@ package entity;
 public class Oferta {
     private String id;
     private double monto;
-    private Usuario comprador;
-    private Producto producto;
+    private String comprador;
+    private String producto;
 
     public Oferta() {
     }
-
-    public Oferta(String id, double monto, Usuario comprador, Producto producto) {
-        this.id = id;
-        this.monto = monto;
-        this.comprador = comprador;
-        this.producto = producto;
-    }
-
 
     public String getId() {
         return id;
@@ -33,30 +25,29 @@ public class Oferta {
         this.monto = monto;
     }
 
-    public Usuario getComprador() {
+    public String getComprador() {
         return comprador;
     }
 
-    public void setComprador(Usuario comprador) {
+    public void setComprador(String comprador) {
         this.comprador = comprador;
     }
 
-    public Producto getProducto() {
+    public String getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(String producto) {
         this.producto = producto;
     }
-
 
     @Override
     public String toString() {
         return "Oferta{" +
                 "id='" + id + '\'' +
                 ", monto=" + monto +
-                ", comprador=" + comprador +
-                ", producto=" + producto +
+                ", comprador='" + comprador + '\'' +
+                ", producto='" + producto + '\'' +
                 '}';
     }
 }

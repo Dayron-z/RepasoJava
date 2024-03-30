@@ -6,14 +6,15 @@ public class Producto {
     private String descripción;
     private double precioInicial;
     private double precioActual;
-    private Usuario vendedor;
+    private String vendedor;
 
     private Estado estado;
 
     public Producto() {
     }
 
-    public Producto(String id, String nombre, String descripción, double precioInicial, double precioActual, Usuario vendedor, Estado estado) {
+
+    public Producto(String id, String nombre, String descripción, double precioInicial, double precioActual, String vendedor, Estado estado) {
         this.id = id;
         this.nombre = nombre;
         this.descripción = descripción;
@@ -64,11 +65,11 @@ public class Producto {
         this.precioActual = precioActual;
     }
 
-    public Usuario getVendedor() {
+    public String getVendedor() {
         return vendedor;
     }
 
-    public void setVendedor(Usuario vendedor) {
+    public void setVendedor(String vendedor) {
         this.vendedor = vendedor;
     }
 
@@ -88,7 +89,7 @@ public class Producto {
                 ", descripción='" + descripción + '\'' +
                 ", precioInicial=" + precioInicial +
                 ", precioActual=" + precioActual +
-                ", vendedor=" + vendedor +
+                ", vendedor='" + vendedor + '\'' +
                 ", estado=" + estado +
                 '}';
     }
