@@ -10,5 +10,6 @@ public interface CRUD {
 
     public boolean update(Object obj);
 
+
     public boolean delete(Object obj);
 }
