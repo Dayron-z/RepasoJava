@@ -17,10 +17,6 @@ public class ModelEspecialidad implements CRUD {
         return null;
     }
 
-
-
-
-
     @Override
     public Object create(Object obj) {
         Especialidad objEspecialidad = (Especialidad) obj;
@@ -36,11 +32,11 @@ public class ModelEspecialidad implements CRUD {
             objPrepare.execute();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error" +  e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error"
+             + e.getMessage());
         }
-
-
-        return false;
+        ConfigDB.closeConnection();
+        return objEspecialidad;
     }
 
     @Override
@@ -52,4 +48,7 @@ public class ModelEspecialidad implements CRUD {
     public boolean delete(Object obj) {
         return false;
     }
+
+
+
 }
