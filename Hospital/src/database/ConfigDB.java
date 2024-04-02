@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConfigDB {
-
         public static Connection objConnection = null;
-
         public static Connection openConnection(){
                 try {
                         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,8 +26,6 @@ public class ConfigDB {
 
             return objConnection;
         }
-
-
         public static void closeConnection(){
                 try {
                  objConnection.close();

@@ -7,6 +7,7 @@ import interfaces.CRUD;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,7 +15,29 @@ public class ModelEspecialidad implements CRUD {
 
     @Override
     public ArrayList<Object> listar() {
-        return null;
+        ArrayList<Object> listaDeEspecialides = new ArrayList<>();
+        Connection objConnection = ConfigDB.openConnection();
+        
+        try {
+            String sql = "SELECT * FROM especialidad";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            
+            ResultSet objResult =  objPrepare.executeQuery(); 
+            
+            while (objResult.next()){
+                Especialidad objEspecialidad = new Especialidad();
+                objEspecialidad.setNombre(objResult.getString("nombre"));
+                objEspecialidad.setDescripcion(objResult.getString("descripcion"));
+                objEspecialidad.setId(objResult.getInt("id"));
+                
+                listaDeEspecialides.add(objEspecialidad);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        }
+
+
+        return listaDeEspecialides;
     }
 
     @Override
