@@ -14,7 +14,7 @@ public class ConfigDB {
 
                         String url = "jdbc:mysql://localhost:3306/hospital";
                         String user = "root";
-                        String password = "Rlwl2023*";
+                        String password = "Rlwl2023.";
 
                         objConnection = DriverManager.getConnection(url, user, password);
                         System.out.println("Conectado perfectamente");

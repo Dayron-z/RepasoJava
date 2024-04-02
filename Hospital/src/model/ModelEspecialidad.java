@@ -28,7 +28,7 @@ public class ModelEspecialidad implements CRUD {
                 Especialidad objEspecialidad = new Especialidad();
                 objEspecialidad.setNombre(objResult.getString("nombre"));
                 objEspecialidad.setDescripcion(objResult.getString("descripcion"));
-                objEspecialidad.setId(objResult.getInt("id"));
+                objEspecialidad.setId(objResult.getInt("id_especialidad"));
                 
                 listaDeEspecialides.add(objEspecialidad);
             }
@@ -64,7 +64,32 @@ public class ModelEspecialidad implements CRUD {
 
     @Override
     public boolean update(Object obj) {
-        return false;
+        Especialidad objEspecialidad = (Especialidad) obj;
+        Connection objConexion = ConfigDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+/*          UPDATE nombre_tabla
+            SET columna1 = valor1, columna2 = valor2, ...
+            WHERE condición;*/
+            String sql = "UPDATE especialidad SET nombre = ?, descripcion = ?, WHERE id = ?;";
+            PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
+
+            objPrepare.setString(1, objEspecialidad.getNombre());
+            objPrepare.setString(2, objEspecialidad.getDescripcion());
+            objPrepare.setInt(3,objEspecialidad.getId());
+
+            int filasAfectadas =  objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0){
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null,"Actualizado con exito" );
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return isUpdate;
     }
 
     @Override
