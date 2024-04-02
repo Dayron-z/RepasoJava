@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ModelEspecialidad implements CRUD {
-
     @Override
     public ArrayList<Object> listar() {
         ArrayList<Object> listaDeEspecialides = new ArrayList<>();
@@ -39,7 +38,6 @@ public class ModelEspecialidad implements CRUD {
 
         return listaDeEspecialides;
     }
-
     @Override
     public Object create(Object obj) {
         Especialidad objEspecialidad = (Especialidad) obj;
@@ -61,7 +59,6 @@ public class ModelEspecialidad implements CRUD {
         ConfigDB.closeConnection();
         return objEspecialidad;
     }
-
     @Override
     public boolean update(Object obj) {
         Especialidad objEspecialidad = (Especialidad) obj;
@@ -72,7 +69,7 @@ public class ModelEspecialidad implements CRUD {
 /*          UPDATE nombre_tabla
             SET columna1 = valor1, columna2 = valor2, ...
             WHERE condición;*/
-            String sql = "UPDATE especialidad SET nombre = ?, descripcion = ?, WHERE id = ?;";
+            String sql = "UPDATE especialidad SET nombre = ?, descripcion = ? WHERE id_especialidad = ?;";
             PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
 
             objPrepare.setString(1, objEspecialidad.getNombre());
@@ -91,12 +88,36 @@ public class ModelEspecialidad implements CRUD {
         }
         return isUpdate;
     }
-
     @Override
     public boolean delete(Object obj) {
-        return false;
+
+        boolean isDeleted = false;
+
+        Especialidad objEspecialidad = (Especialidad) obj;
+        Connection objConnection = ConfigDB.openConnection();
+        try {
+/*            DELETE FROM empleados
+            WHERE departamento = 'Ventas';*/
+           String sql = "DELETE FROM especialidad WHERE id_especialidad = ?;";
+           PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+           objPrepare.setInt(1, objEspecialidad.getId());
+
+           int filasAfectadas = objPrepare.executeUpdate();
+
+           if (filasAfectadas > 0){
+               JOptionPane.showMessageDialog(null, "Especialidad eliminada satisfactorimente");
+               isDeleted = true;
+           }
+
+
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
+
+        return isDeleted;
     }
-
-
-
 }

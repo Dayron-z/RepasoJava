@@ -1,10 +1,8 @@
 package controller;
-
 import entity.Especialidad;
 import model.ModelEspecialidad;
 
 import javax.swing.*;
-
 public class ControllerEspecialidad {
     public static void crearEspecialidad(){
         //Traemos el objModel, para acceder a sus métodos
@@ -33,15 +31,26 @@ public class ControllerEspecialidad {
         JOptionPane.showMessageDialog(null, listaEspecialidades);
 
     }
+    public static String listarEspecialidadesString(){
+        //Traemos el objModel, para acceder a sus métodos
+        ModelEspecialidad objModelEspecialidad = new ModelEspecialidad();
+        String listaEspecialidades = "LISTA ESPECIALIDADES \n";
+        //Esto es un arraylist de Object
+        for (Object objEspecialidad: objModelEspecialidad.listar()){
+            listaEspecialidades += (Especialidad) objEspecialidad + "\n";
+        }
 
-
+        return listaEspecialidades;
+    };
     public static void actualizar (){
         ModelEspecialidad objModel = new ModelEspecialidad();
         Especialidad objEspecialidad = new Especialidad();
 
-
+        int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id del usuario que deseas eliminar"));
         String nombre =JOptionPane.showInputDialog("ingresa el nombre que deseas actualizar");
         String descripcion = JOptionPane.showInputDialog("ingresa la nueva descripcion");
+
+        objEspecialidad.setId(id);
         objEspecialidad.setNombre(nombre);
         objEspecialidad.setDescripcion(descripcion);
 
@@ -51,5 +60,16 @@ public class ControllerEspecialidad {
 
 
         JOptionPane.showMessageDialog(null,"se actualizo correctamente");
+    }
+    public static void eliminar(){
+        ModelEspecialidad objModelEspecialidad = new ModelEspecialidad();
+        Especialidad objEspecialidad = new Especialidad();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarEspecialidadesString() + "\n Ingrese el id del usuario que desea eliminar"));
+
+        objEspecialidad.setId(id);
+
+        objModelEspecialidad.delete(objEspecialidad);
+
     }
 }

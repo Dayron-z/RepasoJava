@@ -3,6 +3,7 @@ import database.ConfigDB;
 
 public class Main {
     public static void main(String[] args) {
-
+        ControllerEspecialidad.eliminar();
+        ControllerEspecialidad.listarEspecialidades();
     }
 }
