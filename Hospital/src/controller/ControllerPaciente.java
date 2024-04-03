@@ -33,7 +33,6 @@ public class ControllerPaciente {
         try {
            LocalDate.parse(fecha_nacimiento, formatoDeFecha);
 
-
             objPaciente.setNombre(nombre);
             objPaciente.setApellidos(apellidos);
             objPaciente.setFecha_nacimiento(fecha_nacimiento);
