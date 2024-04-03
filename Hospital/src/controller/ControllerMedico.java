@@ -50,13 +50,10 @@ public class ControllerMedico {
         ModelMedico objModelMedico = new ModelMedico();
         Medico objMedico = new Medico();
 
-
-
         int id = Integer.parseInt(JOptionPane.showInputDialog(listarMedicosString() + "Ingresa el id del medico que desea editar"));
         String nombre = JOptionPane.showInputDialog("Ingresa el nombre del medico");
         String apellido = JOptionPane.showInputDialog("Ingresa el apellido del medico");
         int idEspecialidad =  Integer.parseInt(JOptionPane.showInputDialog( ControllerEspecialidad.listarEspecialidadesString()+ "Ingresa el id especialidad del medico que desea editar"));
-
 
 
         objMedico.setNombre(nombre);
