@@ -64,9 +64,6 @@ public class ModelEspecialidad implements CRUD {
         boolean isUpdate = false;
 
         try {
-/*          UPDATE nombre_tabla
-            SET columna1 = valor1, columna2 = valor2, ...
-            WHERE condición;*/
             String sql = "UPDATE especialidad SET nombre = ?, descripcion = ? WHERE id_especialidad = ?;";
             PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
 

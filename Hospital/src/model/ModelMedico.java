@@ -1,6 +1,7 @@
 package model;
 
 import database.ConfigDB;
+import entity.Especialidad;
 import entity.Medico;
 import interfaces.CRUD;
 
@@ -66,10 +67,37 @@ public class ModelMedico implements CRUD {
     }
     @Override
     public boolean update(Object obj) {
-        return false;
+        Medico objMedico = (Medico) obj;
+        Connection objConexion = ConfigDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+            String sql = "UPDATE medico SET nombre = ?, apellido = ? id_especialidad = ? WHERE id_medico = ?;";
+            PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
+
+            objPrepare.setString(1, objMedico.getNombre());
+            objPrepare.setString(2, objMedico.getApellido());
+            objPrepare.setInt(3,objMedico.getId_especialidad());
+            objPrepare.setInt(4,objMedico.getId());
+
+
+            int filasAfectadas =  objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0){
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null,"Actualizado con exito" );
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return isUpdate;
+
     }
     @Override
     public boolean delete(Object obj) {
+
+
         return false;
     }
 }

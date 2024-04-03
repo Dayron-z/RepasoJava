@@ -1,6 +1,8 @@
 package controller;
 
+import entity.Especialidad;
 import entity.Medico;
+import model.ModelEspecialidad;
 import model.ModelMedico;
 
 import javax.swing.*;
@@ -27,5 +29,39 @@ public class ControllerMedico {
         /*        nombre, apellidos, id_especialidad*/
 
 
+    }
+    public static void listarMedicos(){
+        ModelMedico objModelMedico = new ModelMedico();
+        String listaMedicos = "LISTA MEDICOS \n";
+        for (Object objMedico: objModelMedico.listar()){
+            listaMedicos += (Medico) objMedico + "\n";
+        }
+        JOptionPane.showMessageDialog(null, listaMedicos);
+    }
+    public static String listarMedicosString(){
+        ModelMedico objModelMedico = new ModelMedico();
+        String listaMedicos = "LISTA MEDICOS \n";
+        for (Object objMedico: objModelMedico.listar()){
+            listaMedicos += (Medico) objMedico + "\n";
+        }
+        return listaMedicos;
+    }
+    public static void actualizar (){
+        ModelMedico objModelMedico = new ModelMedico();
+        Medico objMedico = new Medico();
+
+        String nombre = JOptionPane.showInputDialog("Ingresa el nombre del medico");
+        String apellido = JOptionPane.showInputDialog("Ingresa el apellido del medico");
+        int idEspecialidad = Integer.parseInt(JOptionPane.showInputDialog( ControllerEspecialidad.listarEspecialidadesString() + "Ingresa el id especialidad del medico"));
+
+        objMedico.setNombre(nombre);
+        objMedico.setApellido(apellido);
+        objMedico.setId_especialidad(idEspecialidad);
+
+
+        objModelMedico.update(objMedico);
+
+
+        JOptionPane.showMessageDialog(null,"se actualizo correctamente");
     }
 }

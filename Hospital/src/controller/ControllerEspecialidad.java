@@ -46,7 +46,7 @@ public class ControllerEspecialidad {
         ModelEspecialidad objModel = new ModelEspecialidad();
         Especialidad objEspecialidad = new Especialidad();
 
-        int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id del usuario que deseas eliminar"));
+        int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id del usuario que deseas actualizar"));
         String nombre =JOptionPane.showInputDialog("ingresa el nombre que deseas actualizar");
         String descripcion = JOptionPane.showInputDialog("ingresa la nueva descripcion");
 
