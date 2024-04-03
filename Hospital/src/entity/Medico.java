@@ -7,6 +7,7 @@ public class Medico {
     private int id_especialidad;
 
 
+
     public Medico() {
     }
 

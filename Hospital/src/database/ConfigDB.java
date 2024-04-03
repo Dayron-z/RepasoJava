@@ -9,18 +9,13 @@ public class ConfigDB {
         public static Connection objConnection = null;
         public static Connection openConnection(){
                 try {
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-
-
-                        String url = "jdbc:mysql://localhost:3306/hospital";
-                        String user = "root";
-                        String password = "Rlwl2023*";
+                        String url = "jdbc:mysql://bhqpwbvnqqf0uk9rxq97-mysql.services.clever-cloud.com/bhqpwbvnqqf0uk9rxq97";
+                        String user = "ucmtcrt6jodmrhs4";
+                        String password = "PusXeVJo1AIaP3HR9oQC";
 
                         objConnection = DriverManager.getConnection(url, user, password);
                         System.out.println("Conectado perfectamente");
                 } catch (SQLException e) {
-                        System.out.println("Error:" + e.getMessage());
-                } catch (ClassNotFoundException e) {
                         System.out.println("Error:" + e.getMessage());
                 }
 

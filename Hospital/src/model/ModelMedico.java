@@ -28,7 +28,7 @@ public class ModelMedico implements CRUD {
                 objMedico.setId(objResult.getInt("id_medico"));
                 objMedico.setId_especialidad(objResult.getInt("id_especialidad"));
                 objMedico.setNombre(objResult.getString("nombre"));
-                objMedico.setApellido(objResult.getString("apellido"));
+                objMedico.setApellido(objResult.getString("apellidos"));
 
                 listaMedicos.add(objMedico);
             }
@@ -72,7 +72,7 @@ public class ModelMedico implements CRUD {
         boolean isUpdate = false;
 
         try {
-            String sql = "UPDATE medico SET nombre = ?, apellido = ? id_especialidad = ? WHERE id_medico = ?;";
+            String sql = "UPDATE medico SET nombre = ?, apellidos = ?, id_especialidad = ? WHERE id_medico = ?;";
             PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
 
             objPrepare.setString(1, objMedico.getNombre());
@@ -82,6 +82,8 @@ public class ModelMedico implements CRUD {
 
 
             int filasAfectadas =  objPrepare.executeUpdate();
+
+            System.out.println(filasAfectadas);
 
             if (filasAfectadas > 0){
                 isUpdate = true;
