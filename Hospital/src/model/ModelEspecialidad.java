@@ -1,5 +1,4 @@
 package model;
-
 import database.ConfigDB;
 import entity.Especialidad;
 import interfaces.CRUD;
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 public class ModelEspecialidad implements CRUD {
     @Override
     public ArrayList<Object> listar() {
