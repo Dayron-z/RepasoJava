@@ -6,6 +6,7 @@ import model.ModelEspecialidad;
 import model.ModelMedico;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class ControllerMedico {
     public static void crearMedico(){
@@ -79,15 +80,18 @@ public class ControllerMedico {
     public static void buscarMedicoPorEspecialidad(){
         ModelMedico objModelMedico = new ModelMedico();
 
-        int id =  Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el id de la especialidad por la cual desea filtrar"));
+        String listaMedicos = "LISTA MEDICOS POR ESPECIALIDAD ESPECIFICA \n";
 
-        Medico objMedico = (Medico) objModelMedico.buscarPorEspecialidad(id);
+        int id = Integer.parseInt(JOptionPane.showInputDialog(ControllerEspecialidad.listarEspecialidadesString()  +"\nIngrese el id de la especialidad por la cual desea filtrar los medicos"));
 
-        if (objMedico != null) {
-            System.out.println("E");
+        ArrayList <Object> ListaMedicosPorEspecialidad = objModelMedico.buscarPorEspecialidad(id);
+
+
+        for (Object objMedico: ListaMedicosPorEspecialidad){
+            listaMedicos += objMedico;
         }
 
-
+        JOptionPane.showMessageDialog(null, listaMedicos);
     }
 
 

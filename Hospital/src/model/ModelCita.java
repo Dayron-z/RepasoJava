@@ -132,4 +132,36 @@ public class ModelCita  implements CRUD {
         ConfigDB.closeConnection();
         return isDeleted;
     }
+
+    public ArrayList buscarCitaPorFecha(String fecha){
+        ArrayList<Object> listaDeCitasPorFecha  = new ArrayList<>();
+        Connection objConnection = ConfigDB.openConnection();
+
+        try {
+            String sql = "SELECT * FROM cita where fecha_cita = ? ;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setString(1, fecha);
+
+
+            ResultSet objResult =  objPrepare.executeQuery();
+
+            while (objResult.next()){
+                Cita objCita = new Cita();
+                objCita.setId(objResult.getInt("id_cita"));
+                objCita.setId_paciente(objResult.getInt("id_paciente"));
+                objCita.setId_medico(objResult.getInt("id_medico"));
+                objCita.setFecha_cita(objResult.getString("fecha_cita")  );
+                objCita.setHora_cita(objResult.getString("hora_cita")  );
+                objCita.setMotivo(objResult.getString("motivo"));
+
+                listaDeCitasPorFecha.add(objCita);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return listaDeCitasPorFecha;
+    }
 }

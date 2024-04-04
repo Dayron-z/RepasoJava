@@ -57,7 +57,8 @@ public class Main {
                                 2 - Eliminar medico 
                                 3 - Actualizar medico
                                 4 - Listar medicos 
-                                5 - Salir
+                                5 - Buscar medicos por especialidad 
+                                6 - Salir
                                 """));
 
                         switch (opcionMedico){
@@ -73,10 +74,13 @@ public class Main {
                             case 4:
                                 ControllerMedico.listarMedicos();
                                 break;
+                            case 5:
+                                ControllerMedico.buscarMedicoPorEspecialidad();
+                                break;
                         }
 
 
-                    }while (opcionMedico != 5);
+                    }while (opcionMedico != 6);
                     break;
 
                 case 3:
@@ -118,7 +122,8 @@ public class Main {
                                 2 - Eliminar cita 
                                 3 - Actualizar cita 
                                 4 - Listar cita 
-                                5 - Salir
+                                5 - listar cita por fecha 
+                                6 - Salir
                                 
                                 """));
 
@@ -135,8 +140,11 @@ public class Main {
                             case 4:
                                 ControllerCita.listarCita();
                                 break;
+                            case 5:
+                                ControllerCita.buscarCitasPorFecha();
+                                break;
                         }
-                    }while (opcionCita != 5);
+                    }while (opcionCita != 6);
                     break;
             }
 

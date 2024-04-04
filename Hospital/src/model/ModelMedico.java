@@ -128,9 +128,11 @@ public class ModelMedico implements CRUD {
         return isDeleted;
     }
 
-    public Object buscarPorEspecialidad(int id){
+    public ArrayList<Object> buscarPorEspecialidad(int id){
         Connection objConnection = ConfigDB.openConnection();
-        Medico objMedico = new Medico();
+
+        ArrayList <Object> listaDeMedicosPorEspecialidad = new ArrayList<>();
+
         try {
             String sql = "SELECT * FROM medico where id_especialidad = ?";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
@@ -139,18 +141,21 @@ public class ModelMedico implements CRUD {
 
             ResultSet objResult =  objPrepare.executeQuery();
 
-            if (objResult.next()){
+            while (objResult.next()){
+                Medico objMedico = new Medico();
                 objMedico.setId(objResult.getInt("id_medico"));
                 objMedico.setId_especialidad(objResult.getInt("id_especialidad"));
                 objMedico.setNombre(objResult.getString("nombre"));
                 objMedico.setApellido(objResult.getString("apellidos"));
+
+                listaDeMedicosPorEspecialidad.add(objMedico);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
         }
 
 
-        return objMedico;
+        return listaDeMedicosPorEspecialidad;
     }
 
 

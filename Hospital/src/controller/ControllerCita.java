@@ -5,11 +5,13 @@ import entity.Paciente;
 import model.ModelCita;
 import model.ModelPaciente;
 
+
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class ControllerCita {
     public static void crearCita(){
@@ -142,6 +144,37 @@ public class ControllerCita {
         objModelCita.delete(objCita);
     }
 
+    public static void buscarCitasPorFecha(){
+        ModelCita objModelCita = new ModelCita();
+        String listaDeCitas = "LISTA CITAS POR FECHA ESPECIFICA \n";
+
+
+        String fechaCita = JOptionPane.showInputDialog("Ingresa la fecha de la cita (yyyy-MM-dd)");
+
+
+        try {
+
+            DateTimeFormatter formatoDeFechaCita = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            LocalDate fecha = LocalDate.parse(fechaCita, formatoDeFechaCita);
+        }catch (DateTimeParseException e){
+            System.out.println("Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
+            return; // Terminar la creación de la cita si hay un error
+        }
+
+
+        ArrayList<Object> listaCitaPorFechas =  objModelCita.buscarCitaPorFecha(fechaCita);
+
+
+
+        for (Object objCita: listaCitaPorFechas){
+            listaDeCitas += (Cita) objCita + "\n";
+        }
+
+
+
+        JOptionPane.showMessageDialog(null, "LISTA DE CITAS POR FECHA"  + listaDeCitas);
+    }
 
 
 
