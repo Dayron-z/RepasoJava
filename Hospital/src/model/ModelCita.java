@@ -19,7 +19,7 @@ public class ModelCita  implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
 
         try {
-            String sql = "SELECT * FROM cita";
+            String sql = "SELECT * FROM cita;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
             ResultSet objResult =  objPrepare.executeQuery();
@@ -39,7 +39,7 @@ public class ModelCita  implements CRUD {
             System.out.println("Error" + e.getMessage());
         }
 
-
+        ConfigDB.closeConnection();
         return listaDeCitas;
 
     }
@@ -72,7 +72,40 @@ public class ModelCita  implements CRUD {
 
     @Override
     public boolean update(Object obj) {
-        return false;
+        Cita objCita = (Cita) obj;
+        Connection objConexion = ConfigDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+            String sql = "UPDATE cita SET id_paciente = ?, id_medico = ?, fecha_cita = ?, hora_cita  = ?, motivo = ? WHERE id_cita = ?;";
+
+            PreparedStatement objPrepare =  objConexion.prepareStatement(sql);
+
+            objPrepare.setInt(1, objCita.getId_paciente());
+            objPrepare.setInt(2,objCita.getId_medico());
+            objPrepare.setString(3,objCita.getFecha_cita());
+            System.out.println(objCita.getHora_cita());
+            objPrepare.setString(4,objCita.getHora_cita());
+            objPrepare.setString(5,objCita.getMotivo());
+            objPrepare.setInt(6,objCita.getId());
+
+
+            System.out.println(objPrepare);
+
+            int filasAfectadas =  objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0){
+                System.out.println(filasAfectadas);
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null,"Actualizado con exito" );
+            }
+
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        ConfigDB.closeConnection();
+        return isUpdate;
     }
 
     @Override

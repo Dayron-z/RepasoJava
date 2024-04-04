@@ -68,7 +68,7 @@ public class ControllerPaciente {
         ModelPaciente objModelPaciente = new ModelPaciente();
         Paciente objPaciente = new Paciente();
 
-        int  id =  Integer.parseInt(JOptionPane.showInputDialog( listarPacientesString()  + "Ingresa el id del usuario que desea eliminar"));
+        int  id =  Integer.parseInt(JOptionPane.showInputDialog( listarPacientesString()  + "Ingresa el id del paciente que desea actualizar"));
 
         String nombre = JOptionPane.showInputDialog("Ingresa el nombre del paciente");
         String apellidos = JOptionPane.showInputDialog("Ingresa el apellido del paciente");
