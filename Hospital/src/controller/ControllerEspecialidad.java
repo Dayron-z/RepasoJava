@@ -69,6 +69,8 @@ public class ControllerEspecialidad {
 
         objEspecialidad.setId(id);
 
+
+        System.out.println(objEspecialidad);
         objModelEspecialidad.delete(objEspecialidad);
 
     }

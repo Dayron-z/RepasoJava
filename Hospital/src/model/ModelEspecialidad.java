@@ -96,20 +96,22 @@ public class ModelEspecialidad implements CRUD {
            String sql = "DELETE FROM especialidad WHERE id_especialidad = ?;";
            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
+            System.out.println(objPrepare);
+            System.out.println(objEspecialidad.getId());
+
            objPrepare.setInt(1, objEspecialidad.getId());
 
            int filasAfectadas = objPrepare.executeUpdate();
 
+            System.out.println(filasAfectadas);
            if (filasAfectadas > 0){
                JOptionPane.showMessageDialog(null, "Especialidad eliminada satisfactorimente");
                isDeleted = true;
            }
 
 
-
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
 
 
