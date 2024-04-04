@@ -82,13 +82,11 @@ public class ModelCita  implements CRUD {
             objPrepare.setInt(1, objCita.getId_paciente());
             objPrepare.setInt(2,objCita.getId_medico());
             objPrepare.setString(3,objCita.getFecha_cita());
-            System.out.println(objCita.getHora_cita());
             objPrepare.setString(4,objCita.getHora_cita());
             objPrepare.setString(5,objCita.getMotivo());
             objPrepare.setInt(6,objCita.getId());
 
 
-            System.out.println(objPrepare);
 
             int filasAfectadas =  objPrepare.executeUpdate();
 

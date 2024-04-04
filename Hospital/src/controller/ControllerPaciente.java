@@ -38,10 +38,9 @@ public class ControllerPaciente {
             objPaciente.setFecha_nacimiento(fecha_nacimiento);
             objPaciente.setDocumento_identidad(documento_identidad);
 
-            JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
 
             Paciente paciente = (Paciente) objModelPaciente.create(objPaciente);
-            JOptionPane.showMessageDialog(null, paciente + "\nMedico agregado correctamente");
+            JOptionPane.showMessageDialog(null, paciente + "\n Paciente agregado correctamente");
 
         }catch (DateTimeParseException e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
@@ -88,7 +87,6 @@ public class ControllerPaciente {
 
 
             objModelPaciente.update(objPaciente);
-            JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
         }catch (DateTimeParseException e){
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
         }
@@ -114,9 +112,9 @@ public class ControllerPaciente {
         Paciente objPaciente =  (Paciente)objModelPaciente.buscarPacientePorCedula(cedula);
 
         if (objPaciente != null){
-            System.out.println("El paciente ha sido encontrado con exito\n" + objPaciente);
+            JOptionPane.showMessageDialog(null, "El paciente ha sido encontrado con exito\n" + objPaciente);
         }else{
-            System.out.println("El paciente no existe");
+            JOptionPane.showMessageDialog(null, "El paciente no existe");
         };
 
     }

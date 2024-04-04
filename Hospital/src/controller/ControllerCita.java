@@ -34,7 +34,7 @@ public class ControllerCita {
             //Formateamos la hora como deseemos
             LocalTime hora = LocalTime.parse(hora_cita);
         }catch (DateTimeParseException e){
-            System.out.println("Error: Formato de hora inválido. Asegúrate de usar el formato HH:mm:ss");
+            JOptionPane.showMessageDialog(null, "Error: Formato de hora inválido. Asegúrate de usar el formato HH:mm:ss");
             return;  // Terminar la creación de la cita si hay un error
         }
 
@@ -46,7 +46,7 @@ public class ControllerCita {
 
             LocalDate fecha = LocalDate.parse(fechaCita, formatoDeFechaCita);
         }catch (DateTimeParseException e){
-            System.out.println("Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
+            JOptionPane.showMessageDialog(null, "Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
             return; // Terminar la creación de la cita si hay un error
         }
 
@@ -91,18 +91,20 @@ public class ControllerCita {
 
         String hora_cita = JOptionPane.showInputDialog("Ingresa la hora de la cita (HH:mm:ss)");
 
-        String fechaCita = JOptionPane.showInputDialog("Ingresa la fecha de la cita (yyyy-MM-dd)");
-
-        /*Espacio para desarrollo de almacenamiento de hora*/
-
         /*Local time para hora*/
         try {
             //Formateamos la hora como deseemos
             LocalTime hora = LocalTime.parse(hora_cita);
         }catch (DateTimeParseException e){
-            System.out.println("Error: Formato de hora inválido. Asegúrate de usar el formato HH:mm:ss");
+            JOptionPane.showMessageDialog(null, "Error: Formato de hora inválido. Asegúrate de usar el formato HH:mm:ss");
             return;  // Terminar la creación de la cita si hay un error
         }
+
+
+        String fechaCita = JOptionPane.showInputDialog("Ingresa la fecha de la cita (yyyy-MM-dd)");
+
+        /*Espacio para desarrollo de almacenamiento de hora*/
+
 
         /*Local date para fecha */
 
@@ -112,7 +114,8 @@ public class ControllerCita {
 
             LocalDate fecha = LocalDate.parse(fechaCita, formatoDeFechaCita);
         }catch (DateTimeParseException e){
-            System.out.println("Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
+
+            JOptionPane.showMessageDialog(null, "Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
             return; // Terminar la creación de la cita si hay un error
         }
 
@@ -126,7 +129,6 @@ public class ControllerCita {
 
 
 
-        JOptionPane.showMessageDialog(null, "CITA ACTUALIZADA CON ÉXITO\n");
 
         objModelCita.update(objCita);
 
@@ -158,7 +160,7 @@ public class ControllerCita {
 
             LocalDate fecha = LocalDate.parse(fechaCita, formatoDeFechaCita);
         }catch (DateTimeParseException e){
-            System.out.println("Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
+            JOptionPane.showMessageDialog(null, "Error: Formato de fecha inválido. Asegúrate de usar el formato yyyy-MM-dd");
             return; // Terminar la creación de la cita si hay un error
         }
 

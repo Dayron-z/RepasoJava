@@ -61,8 +61,6 @@ public class ControllerMedico {
 
         objModelMedico.update(objMedico);
 
-
-        JOptionPane.showMessageDialog(null,"se actualizo correctamente");
     }
     public static void eliminar (){
         ModelMedico objModelMedico  = new ModelMedico();
