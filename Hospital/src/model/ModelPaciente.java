@@ -97,6 +97,27 @@ public class ModelPaciente implements CRUD {
     }
     @Override
     public boolean delete(Object obj) {
-        return false;
+
+        boolean isDeleted = false;
+
+        Paciente objPaciente = (Paciente) obj;
+        Connection objConnection = ConfigDB.openConnection();
+        try {
+            String sql = "DELETE FROM paciente WHERE id_paciente = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, objPaciente.getId());
+            int filasAfectadas = objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0){
+                JOptionPane.showMessageDialog(null, "Especialidad eliminada satisfactorimente");
+                isDeleted = true;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
+
+        return isDeleted;
     }
 }

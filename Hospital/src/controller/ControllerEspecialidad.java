@@ -65,11 +65,16 @@ public class ControllerEspecialidad {
         ModelEspecialidad objModelEspecialidad = new ModelEspecialidad();
         Especialidad objEspecialidad = new Especialidad();
 
-        int id = Integer.parseInt(JOptionPane.showInputDialog(listarEspecialidadesString() + "\n Ingrese el id del usuario que desea eliminar"));
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarEspecialidadesString() + "\n Ingrese el id de la especialidad  que desea eliminar"));
 
         objEspecialidad.setId(id);
 
         objModelEspecialidad.delete(objEspecialidad);
 
     }
+
+
+
+
+
 }

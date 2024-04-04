@@ -1,3 +1,4 @@
+import controller.ControllerCita;
 import controller.ControllerEspecialidad;
 import controller.ControllerMedico;
 import controller.ControllerPaciente;
@@ -7,6 +8,6 @@ import model.ModelMedico;
 
 public class Main {
     public static void main(String[] args) {
-        ControllerPaciente.crearPaciente();
+        ControllerCita.crearCita();
     }
 }

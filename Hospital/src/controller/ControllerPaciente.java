@@ -23,7 +23,7 @@ public class ControllerPaciente {
         String apellidos = JOptionPane.showInputDialog("Ingresa el apellido del paciente");
         String documento_identidad = JOptionPane.showInputDialog("Ingresa el documento de identidad");
 
-        String fecha_nacimiento = JOptionPane.showInputDialog("Ingresa la fecha de nacimiento ");
+        String fecha_nacimiento = JOptionPane.showInputDialog("Ingresa la fecha de nacimiento (yyyy-MM-dd) ");
         DateTimeFormatter formatoDeFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
@@ -47,8 +47,6 @@ public class ControllerPaciente {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
 
-
-
     }
     public static void listarPacientes(){
         ModelPaciente objModelPaciente = new ModelPaciente();
@@ -66,7 +64,6 @@ public class ControllerPaciente {
         }
         return  listaPacientes;
     }
-
     public static void actualizar (){
         ModelPaciente objModelPaciente = new ModelPaciente();
         Paciente objPaciente = new Paciente();
@@ -97,5 +94,15 @@ public class ControllerPaciente {
         }
 
 
+    }
+    public static void eliminar (){
+        ModelPaciente objModelPaciente = new ModelPaciente();
+        Paciente objPaciente = new Paciente();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarPacientesString() + "\n Ingrese el id del paciente que desea eliminar"));
+
+        objPaciente.setId(id);
+
+        objModelPaciente.delete(objPaciente);
     }
 }
