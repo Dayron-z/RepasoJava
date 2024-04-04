@@ -61,7 +61,6 @@ public class ControllerCita {
 
 
     }
-
     public static void listarCita(){
         ModelCita objModelCita = new ModelCita();
         String listaDeCitas = "LISTA CITAS \n";
@@ -70,7 +69,6 @@ public class ControllerCita {
         }
         JOptionPane.showMessageDialog(null, listaDeCitas);
     }
-
     public static String listarCitaString(){
         ModelCita objModelCita = new ModelCita();
         String listaDeCitas = "LISTA CITAS \n";
@@ -133,5 +131,19 @@ public class ControllerCita {
 
 
     }
+
+    public static void eliminar (){
+        ModelCita objModelCita = new ModelCita();
+        Cita objCita = new Cita();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarCitaString() + "\n Ingrese el id de la cita que desea eliminar"));
+
+        objCita.setId(id);
+
+        objModelCita.delete(objCita);
+    }
+
+
+
 
 }

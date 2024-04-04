@@ -117,7 +117,7 @@ public class ModelPaciente implements CRUD {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
 
-
+        ConfigDB.closeConnection();
         return isDeleted;
     }
 }

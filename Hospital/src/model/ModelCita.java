@@ -110,6 +110,29 @@ public class ModelCita  implements CRUD {
 
     @Override
     public boolean delete(Object obj) {
-        return false;
+        boolean isDeleted = false;
+        Cita objCita = (Cita) obj;
+        Connection objConnection = ConfigDB.openConnection();
+
+        try {
+            String sql = "DELETE FROM cita WHERE id_cita = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, objCita.getId());
+
+
+            int filasAfectadas = objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0){
+                JOptionPane.showMessageDialog(null, "Cita eliminada satisfactorimente");
+                isDeleted = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en model" + e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+        return isDeleted;
     }
 }

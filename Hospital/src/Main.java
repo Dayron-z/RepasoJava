@@ -8,6 +8,7 @@ import model.ModelMedico;
 
 public class Main {
     public static void main(String[] args) {
-        ControllerCita.actualizar();
+        ControllerCita.eliminar();
+        ControllerCita.listarCita();
     }
 }
