@@ -3,6 +3,7 @@ package model;
 import database.ConfigDB;
 import entity.Especialidad;
 import entity.Medico;
+import entity.Paciente;
 import interfaces.CRUD;
 
 import javax.swing.*;
@@ -99,7 +100,58 @@ public class ModelMedico implements CRUD {
     @Override
     public boolean delete(Object obj) {
 
+        boolean isDeleted = false;
+        Medico objMedico = (Medico) obj;
+        Connection objConnection = ConfigDB.openConnection();
 
-        return false;
+        try {
+            String sql = "DELETE FROM medico WHERE id_medico = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+
+            objPrepare.setInt(1, objMedico.getId());
+
+            int filasAfectadas = objPrepare.executeUpdate();
+
+            System.out.println(filasAfectadas);
+            if (filasAfectadas > 0){
+                JOptionPane.showMessageDialog(null, "Medico eliminado satisfactorimente");
+                isDeleted = true;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+        return isDeleted;
     }
+
+    public Object buscarPorEspecialidad(int id){
+        Connection objConnection = ConfigDB.openConnection();
+        Medico objMedico = new Medico();
+        try {
+            String sql = "SELECT * FROM medico where id_especialidad = ?";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, id);
+
+            ResultSet objResult =  objPrepare.executeQuery();
+
+            if (objResult.next()){
+                objMedico.setId(objResult.getInt("id_medico"));
+                objMedico.setId_especialidad(objResult.getInt("id_especialidad"));
+                objMedico.setNombre(objResult.getString("nombre"));
+                objMedico.setApellido(objResult.getString("apellidos"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        }
+
+
+        return objMedico;
+    }
+
+
 }

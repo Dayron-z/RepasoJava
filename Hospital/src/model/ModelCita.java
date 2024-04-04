@@ -43,7 +43,6 @@ public class ModelCita  implements CRUD {
         return listaDeCitas;
 
     }
-
     @Override
     public Object create(Object obj) {
         Cita objCita = (Cita) obj;
@@ -69,7 +68,6 @@ public class ModelCita  implements CRUD {
         ConfigDB.closeConnection();
         return objCita;
     }
-
     @Override
     public boolean update(Object obj) {
         Cita objCita = (Cita) obj;
@@ -107,7 +105,6 @@ public class ModelCita  implements CRUD {
         ConfigDB.closeConnection();
         return isUpdate;
     }
-
     @Override
     public boolean delete(Object obj) {
         boolean isDeleted = false;

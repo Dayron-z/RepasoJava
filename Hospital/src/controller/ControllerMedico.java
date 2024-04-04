@@ -25,10 +25,6 @@ public class ControllerMedico {
 
         JOptionPane.showMessageDialog(null, medico + "\nMedico agregado correctamente");
 
-
-        /*        nombre, apellidos, id_especialidad*/
-
-
     }
     public static void listarMedicos(){
         ModelMedico objModelMedico = new ModelMedico();
@@ -67,4 +63,32 @@ public class ControllerMedico {
 
         JOptionPane.showMessageDialog(null,"se actualizo correctamente");
     }
+    public static void eliminar (){
+        ModelMedico objModelMedico  = new ModelMedico();
+        Medico objMedico = new Medico();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarMedicosString() + "\n Ingrese el id del medico que desea eliminar"));
+
+        objMedico.setId(id);
+
+
+        objModelMedico.delete(objMedico);
+
+    }
+
+    public static void buscarMedicoPorEspecialidad(){
+        ModelMedico objModelMedico = new ModelMedico();
+
+        int id =  Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el id de la especialidad por la cual desea filtrar"));
+
+        Medico objMedico = (Medico) objModelMedico.buscarPorEspecialidad(id);
+
+        if (objMedico != null) {
+            System.out.println("E");
+        }
+
+
+    }
+
+
 }

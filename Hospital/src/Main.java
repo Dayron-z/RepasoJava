@@ -65,7 +65,7 @@ public class Main {
                                 ControllerMedico.crearMedico();
                                 break;
                             case 2:
-                                JOptionPane.showMessageDialog(null, "Falta por crear");
+                                ControllerMedico.eliminar();
                                 break;
                             case 3:
                                 ControllerMedico.actualizar();
@@ -86,7 +86,8 @@ public class Main {
                                  2 - Eliminar paciente 
                                  3 - Actualizar paciente  
                                  4 - Listar pacientes 
-                                 5 - Salir 
+                                 5 - Buscar paciente por cédula
+                                 6 - Salir 
                                  """));
 
                          switch (opcionPaciente){
@@ -102,9 +103,12 @@ public class Main {
                              case 4:
                                  ControllerPaciente.listarPacientes();
                                  break;
+                             case 5:
+                                 ControllerPaciente.buscarPacientePorCedula();
+                                 break;
                          }
 
-                    }while (opcionPaciente != 5);
+                    }while (opcionPaciente != 6);
                     break;
 
                 case 4:
@@ -112,11 +116,26 @@ public class Main {
                         opcionCita = Integer.parseInt(JOptionPane.showInputDialog("""
                                 1 - Crear cita
                                 2 - Eliminar cita 
-                                3 - Actualizar pacientes 
-                                4 - Listar pacientes 
+                                3 - Actualizar cita 
+                                4 - Listar cita 
                                 5 - Salir
                                 
                                 """));
+
+                        switch (opcionCita){
+                            case 1:
+                                ControllerCita.crearCita();
+                                break;
+                            case 2:
+                                ControllerCita.eliminar();
+                                break;
+                            case 3:
+                                ControllerCita.actualizar();
+                                break;
+                            case 4:
+                                ControllerCita.listarCita();
+                                break;
+                        }
                     }while (opcionCita != 5);
                     break;
             }

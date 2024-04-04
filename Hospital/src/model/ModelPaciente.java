@@ -19,7 +19,7 @@ public class ModelPaciente implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
 
         try {
-            String sql = "SELECT * FROM paciente";
+            String sql = "SELECT * FROM paciente ";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
             ResultSet objResult =  objPrepare.executeQuery();
@@ -120,4 +120,33 @@ public class ModelPaciente implements CRUD {
         ConfigDB.closeConnection();
         return isDeleted;
     }
+
+    public Object buscarPacientePorCedula(String cedula){
+        Connection objConnection = ConfigDB.openConnection();
+        Paciente objPaciente = new Paciente();
+        try {
+            String sql = "SELECT * FROM paciente where documento_identidad = ?";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setString(1, cedula);
+
+            ResultSet objResult =  objPrepare.executeQuery();
+
+            if (objResult.next()){
+                objPaciente.setId(objResult.getInt("id_paciente"));
+                objPaciente.setNombre(objResult.getString("nombre"));
+                objPaciente.setApellidos(objResult.getString("apellidos"));
+                objPaciente.setFecha_nacimiento(objResult.getString("fecha_nacimiento"));
+                objPaciente.setDocumento_identidad(objResult.getString("documento_identidad"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        }
+
+
+        return objPaciente;
+    }
+
+
+
 }

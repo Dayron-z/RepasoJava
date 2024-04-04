@@ -131,8 +131,7 @@ public class ControllerCita {
 
 
     }
-
-    public static void eliminar (){
+    public static void eliminar(){
         ModelCita objModelCita = new ModelCita();
         Cita objCita = new Cita();
 

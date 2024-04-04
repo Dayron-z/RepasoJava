@@ -33,7 +33,7 @@ public class ModelEspecialidad implements CRUD {
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
         }
 
-
+        ConfigDB.closeConnection();
         return listaDeEspecialides;
     }
     @Override
@@ -81,6 +81,7 @@ public class ModelEspecialidad implements CRUD {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
+        ConfigDB.closeConnection();
         return isUpdate;
     }
     @Override
@@ -96,8 +97,6 @@ public class ModelEspecialidad implements CRUD {
            String sql = "DELETE FROM especialidad WHERE id_especialidad = ?;";
            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
-            System.out.println(objPrepare);
-            System.out.println(objEspecialidad.getId());
 
            objPrepare.setInt(1, objEspecialidad.getId());
 
@@ -114,7 +113,7 @@ public class ModelEspecialidad implements CRUD {
             System.out.println("Error: " + e.getMessage());
         }
 
-
+        ConfigDB.closeConnection();
         return isDeleted;
     }
 }

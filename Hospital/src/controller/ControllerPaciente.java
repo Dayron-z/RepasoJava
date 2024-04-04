@@ -105,4 +105,20 @@ public class ControllerPaciente {
 
         objModelPaciente.delete(objPaciente);
     }
+
+    public static void buscarPacientePorCedula(){
+        String cedula = JOptionPane.showInputDialog(null, "\n Ingrese la cedula del usuario que desea buscar");
+
+        ModelPaciente objModelPaciente = new ModelPaciente();
+
+        Paciente objPaciente =  (Paciente)objModelPaciente.buscarPacientePorCedula(cedula);
+
+        if (objPaciente != null){
+            System.out.println("El paciente ha sido encontrado con exito\n" + objPaciente);
+        }else{
+            System.out.println("El paciente no existe");
+        };
+
+    }
+
 }

@@ -47,8 +47,8 @@ public class ControllerEspecialidad {
         Especialidad objEspecialidad = new Especialidad();
 
         int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id del usuario que deseas actualizar"));
-        String nombre =JOptionPane.showInputDialog("ingresa el nombre que deseas actualizar");
-        String descripcion = JOptionPane.showInputDialog("ingresa la nueva descripcion");
+        String nombre =JOptionPane.showInputDialog("ingresa el nombre de la especialidad");
+        String descripcion = JOptionPane.showInputDialog("ingresa la descripcion de la especialidad");
 
         objEspecialidad.setId(id);
         objEspecialidad.setNombre(nombre);
@@ -58,8 +58,6 @@ public class ControllerEspecialidad {
         objModel.update(objEspecialidad);
 
 
-
-        JOptionPane.showMessageDialog(null,"se actualizo correctamente");
     }
     public static void eliminar(){
         ModelEspecialidad objModelEspecialidad = new ModelEspecialidad();
