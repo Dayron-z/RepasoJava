@@ -71,4 +71,17 @@ public class Cita {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
+
+
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id=" + id +
+                ", id_paciente=" + id_paciente +
+                ", id_medico=" + id_medico +
+                ", fecha_cita='" + fecha_cita + '\'' +
+                ", hora_cita='" + hora_cita + '\'' +
+                ", motivo='" + motivo + '\'' +
+                '}';
+    }
 }

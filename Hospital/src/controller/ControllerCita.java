@@ -61,4 +61,13 @@ public class ControllerCita {
 
 
     }
+
+    public static void listarCita(){
+        ModelCita objModelCita = new ModelCita();
+        String listaDeCitas = "LISTA CITAS \n";
+        for (Object objCita: objModelCita.listar()){
+            listaDeCitas += (Cita) objCita + "\n";
+        }
+        JOptionPane.showMessageDialog(null, listaDeCitas);
+    }
 }
