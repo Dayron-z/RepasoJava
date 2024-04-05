@@ -10,6 +10,7 @@ public class Vuelo {
     private LocalTime hora_salida;
     private int id_avion;
 
+
     public Vuelo(int id_vuelo, String destino, LocalDate fecha_salida, LocalTime hora_salida, int id_avion) {
         this.id_vuelo = id_vuelo;
         this.destino = destino;

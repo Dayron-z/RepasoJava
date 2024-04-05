@@ -1,5 +1,6 @@
 import controller.ControllerAvion;
 import controller.ControllerPasajero;
+import controller.ControllerVuelo;
 
 
 import javax.swing.*;
@@ -110,12 +111,14 @@ public class Main {
 
                         switch (opcionVuelo){
                             case 1:
+                                ControllerVuelo.crearVuelo();
                                 break;
                             case 2:
                                 break;
                             case 3:
                                 break;
                             case 4:
+                                ControllerVuelo.listarVuelos();
                                 break;
                         }
                     }while (opcionVuelo != 5);

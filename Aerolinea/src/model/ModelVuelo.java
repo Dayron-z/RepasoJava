@@ -21,7 +21,7 @@ public class ModelVuelo implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
 
         try {
-            String sql = "SELECT vuelo.*, avion.modelo FROM vuelo INNER JOIN avion ON vuelo.id_avion = avion.id_avion;";
+            String sql = "SELECT vuelo.*, avion.modelo, avion.capacidad FROM vuelo INNER JOIN avion ON vuelo.id_avion = avion.id_avion;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
             ResultSet objResult =  objPrepare.executeQuery();
@@ -54,15 +54,13 @@ public class ModelVuelo implements CRUD {
         ConfigDB.closeConnection();
         return listaDeVuelos;
     }
-
-
     @Override
     public Object create(Object obj) {
         Vuelo objVuelo = (Vuelo) obj;
         Connection objConnection = ConfigDB.openConnection();
 
         try {
-            String sql = "INSERT INTO avion (destino, fecha_salida, hora_salida, id_avion ) VALUES (?, ?, ?, ?,  ?)";
+            String sql = "INSERT INTO vuelo (destino, fecha_salida, hora_salida, id_avion ) VALUES (?, ?, ?, ?)";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objVuelo.getDestino());
@@ -89,8 +87,8 @@ public class ModelVuelo implements CRUD {
 
 
         } catch (SQLException e) {
-            System.out.println("Error" + e.getMessage());
-
+            System.out.println("Error al insertar el vuelo: " + e.getMessage());
+            return null;
         }
         ConfigDB.closeConnection();
         return objVuelo;
