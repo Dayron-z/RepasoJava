@@ -47,12 +47,19 @@ public class ModelAvion implements CRUD {
 
         try {
             String sql = "INSERT INTO avion (modelo, capacidad) VALUES (?, ?)";
-            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objAvion.getModelo());
             objPrepare.setInt(2, objAvion.getCapacidad());
 
             objPrepare.execute();
+
+            ResultSet objResult = objPrepare.getGeneratedKeys();
+
+            if (objResult.next()){
+                objAvion.setId(objResult.getInt(1));
+            }
+
 
         } catch (SQLException e) {
             System.out.println("Error" + e.getMessage());
