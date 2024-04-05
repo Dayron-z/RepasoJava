@@ -76,15 +76,7 @@ public class ModelVuelo implements CRUD {
             java.sql.Time horaSalidaSQL = java.sql.Time.valueOf(horaSalida);
             objPrepare.setTime(3, horaSalidaSQL);
 
-
-
-
-
-
-
-
-
-
+            objPrepare.setInt(4, objVuelo.getId_avion());
 
 
             objPrepare.execute();
@@ -92,7 +84,7 @@ public class ModelVuelo implements CRUD {
             ResultSet objResult = objPrepare.getGeneratedKeys();
 
             if (objResult.next()){
-                objAvion.setId(objResult.getInt(1));
+                objVuelo.setId_vuelo(objResult.getInt(1));
             }
 
 
@@ -101,9 +93,7 @@ public class ModelVuelo implements CRUD {
 
         }
         ConfigDB.closeConnection();
-        return objAvion;
-
-        return null;
+        return objVuelo;
     }
 
     @Override
