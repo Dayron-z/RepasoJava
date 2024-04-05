@@ -1,4 +1,5 @@
 import controller.ControllerAvion;
+import controller.ControllerPasajero;
 
 
 import javax.swing.*;
@@ -57,12 +58,16 @@ public class Main {
 
                         switch (opcionPasajero){
                             case 1:
+                                ControllerPasajero.crearPasajero();
                                 break;
                             case 2:
+                                ControllerPasajero.eliminarPasajero();
                                 break;
                             case 3:
+                                ControllerPasajero.actualizarPasajero();
                                 break;
                             case 4:
+                                ControllerPasajero.listarPasajero();
                                 break;
                         }
                     }while (opcionPasajero != 5);

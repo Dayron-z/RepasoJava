@@ -70,7 +70,7 @@ public class ModelPasajero implements CRUD {
         }
         ConfigDB.closeConnection();
 
-        return null;
+        return objPasajero;
     }
     @Override
     public boolean update(Object obj) {
@@ -151,7 +151,4 @@ public class ModelPasajero implements CRUD {
         ConfigDB.closeConnection();
         return objPasajero;
     }
-
-
-
 }
