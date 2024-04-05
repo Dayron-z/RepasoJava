@@ -68,6 +68,23 @@ public class ControllerAvion {
         }
 
     }
+    public static void eliminarAvion(){
+        ModelAvion objModelAvion = new ModelAvion();
+        Avion objAvion = new Avion();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarAvionesString() + "\n Ingrese el id de la especialidad  que desea eliminar"));
+
+        objAvion.setId(id);
+
+
+        boolean validacion = objModelAvion.delete(objAvion);;
+
+        if (validacion){
+            JOptionPane.showMessageDialog(null, "Avion eliminado con exito" );
+        }
+
+
+    }
 
 
 
