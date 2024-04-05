@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ModelAvion implements CRUD {
-
     @Override
     public ArrayList<Object> listar() {
         ArrayList<Object> listaDeAviones = new ArrayList<>();

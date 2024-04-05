@@ -53,6 +53,8 @@ public class ControllerAvion {
         Avion objAvion = new Avion();
 
         int id = Integer.parseInt(JOptionPane.showInputDialog( listarAvionesString() + "\nIngresa el id del avion que deseas actualizar"));
+
+
         Avion avion =  (Avion) objModelAvion.findByID(id);
         String modelo =JOptionPane.showInputDialog("ingresa el nombre del modelo", avion.getModelo());
         int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Ingresa la capacidad del avion", avion.getCapacidad()));
@@ -73,7 +75,7 @@ public class ControllerAvion {
         ModelAvion objModelAvion = new ModelAvion();
         Avion objAvion = new Avion();
 
-        int id = Integer.parseInt(JOptionPane.showInputDialog(listarAvionesString() + "\n Ingrese el id de la especialidad  que desea eliminar"));
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarAvionesString() + "\n Ingrese el id del avion que desea eliminar"));
 
         objAvion.setId(id);
 

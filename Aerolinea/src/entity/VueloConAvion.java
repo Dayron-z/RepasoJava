@@ -35,9 +35,13 @@ public class VueloConAvion {
 
     @Override
     public String toString() {
-        return "VueloConAvion{" +
-                "vuelo=" + vuelo +
-                ", avion=" + avion +
-                '}';
+        return "Datos generales: " +
+                "ID - VUELO: "+ vuelo.getId_vuelo() +
+                " DESTINO: " + vuelo.getDestino() +
+                " FECHA: " +vuelo.getFecha_salida() +
+                " HORA - SALIDA: " + vuelo.getHora_salida() +
+                " MODELO - AVION:  " + avion.getModelo() +
+                " CAPACIDAD: "  + avion.getCapacidad()
+                 ;
     }
 }

@@ -105,7 +105,7 @@ public class Main {
                                 2 - Eliminar vuelo 
                                 3 - Actualizar vuelo 
                                 4 - Listar vuelo 
-                                6 - Salir
+                                5 - Salir
                                 
                                 """));
 
@@ -114,8 +114,10 @@ public class Main {
                                 ControllerVuelo.crearVuelo();
                                 break;
                             case 2:
+                                ControllerVuelo.eliminarVuelo();
                                 break;
                             case 3:
+                                ControllerVuelo.actualizarVuelo();
                                 break;
                             case 4:
                                 ControllerVuelo.listarVuelos();
