@@ -40,7 +40,6 @@ public class ModelAvion implements CRUD {
         ConfigDB.closeConnection();
         return listaDeAviones;
     }
-
     @Override
     public Object create(Object obj) {
         Avion objAvion = (Avion) obj;
@@ -62,7 +61,6 @@ public class ModelAvion implements CRUD {
         ConfigDB.closeConnection();
         return objAvion;
     }
-
     @Override
     public boolean update(Object obj) {
         Avion objAvion = (Avion) obj;
@@ -88,7 +86,6 @@ public class ModelAvion implements CRUD {
         }
         return isUpdate;
     }
-
     @Override
     public boolean delete(Object obj) {
         boolean isDeleted = false;
@@ -116,5 +113,31 @@ public class ModelAvion implements CRUD {
 
 
 
+    }
+    public Object findByID(int id){
+        Avion objAvion = new Avion();
+        Connection objConnection = ConfigDB.openConnection();
+
+        try {
+            String sql = "SELECT * FROM avion where id_avion = ?";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, id);
+
+            ResultSet objResult =  objPrepare.executeQuery();
+
+            while (objResult.next()){
+                objAvion.setId(objResult.getInt("id_avion"));
+                objAvion.setCapacidad(objResult.getInt("capacidad"));
+                objAvion.setModelo(objResult.getString("modelo"));
+
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+        return objAvion;
     }
 }
