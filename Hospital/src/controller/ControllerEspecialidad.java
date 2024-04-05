@@ -46,7 +46,7 @@ public class ControllerEspecialidad {
         ModelEspecialidad objModel = new ModelEspecialidad();
         Especialidad objEspecialidad = new Especialidad();
 
-        int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id del usuario que deseas actualizar"));
+        int id = Integer.parseInt(JOptionPane.showInputDialog( listarEspecialidadesString() + "\nIngresa el id de la especialidad que deseas actualizar"));
         String nombre =JOptionPane.showInputDialog("ingresa el nombre de la especialidad");
         String descripcion = JOptionPane.showInputDialog("ingresa la descripcion de la especialidad");
 
