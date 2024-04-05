@@ -1,10 +1,5 @@
-import controller.ControllerCita;
-import controller.ControllerEspecialidad;
-import controller.ControllerMedico;
-import controller.ControllerPaciente;
-import database.ConfigDB;
-import model.ModelEspecialidad;
-import model.ModelMedico;
+import controller.ControllerAvion;
+
 
 import javax.swing.*;
 
@@ -34,16 +29,16 @@ public class Main {
 
                         switch (opcionAvion){
                             case 1:
-                                ControllerEspecialidad.crearEspecialidad();
+                                ControllerAvion.crearAvion();
                                 break;
                             case 2:
-                                ControllerEspecialidad.eliminar();
+                                ControllerAvion.eliminarAvion();
                                 break;
                             case 3:
-                                ControllerEspecialidad.actualizar();
+                                ControllerAvion.actualizarAvion();
                                 break;
                             case 4:
-                                ControllerEspecialidad.listarEspecialidades();
+                                ControllerAvion.listarAviones();
                                 break;
                         }
                     }while (opcionAvion != 5);

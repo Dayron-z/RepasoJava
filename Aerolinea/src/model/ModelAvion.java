@@ -81,7 +81,6 @@ public class ModelAvion implements CRUD {
 
             if (filasAfectadas > 0){
                 isUpdate = true;
-                JOptionPane.showMessageDialog(null,"Actualizado con exito" );
             }
 
         } catch (Exception e) {
@@ -105,7 +104,6 @@ public class ModelAvion implements CRUD {
             int filasAfectadas = objPrepare.executeUpdate();
 
             if (filasAfectadas > 0){
-                JOptionPane.showMessageDialog(null, "Eliminado satisfactorimente");
                 isDeleted = true;
             }
 
