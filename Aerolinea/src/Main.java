@@ -1,5 +1,6 @@
 import controller.ControllerAvion;
 import controller.ControllerPasajero;
+import controller.ControllerReservacion;
 import controller.ControllerVuelo;
 
 
@@ -86,12 +87,14 @@ public class Main {
 
                         switch (opcionReservacion){
                             case 1:
+                                ControllerReservacion.crearReservacion();
                                 break;
                             case 2:
                                 break;
                             case 3:
                                 break;
                             case 4:
+                                ControllerReservacion.listarReservacion();
                                 break;
                         }
 

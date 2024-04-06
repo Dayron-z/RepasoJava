@@ -20,7 +20,7 @@ public class ModeloReservacion implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
 
     try {
-        String sql = "SELECT reservacion.*, pasajero.*, avion.* " +
+        String sql = "SELECT reservacion.*, pasajero.*, vuelo.* " +
                 "FROM reservacion " +
                 "INNER JOIN pasajero ON pasajero.id_pasajero = reservacion.id_pasajero " +
                 "INNER JOIN vuelo ON vuelo.id_vuelo = reservacion.id_vuelo";
@@ -48,17 +48,17 @@ public class ModeloReservacion implements CRUD {
             //Almacenamos en tipo de dato requerido y paraseamos el dato string
             //Luego podremos setear
 
-            String fechaSalidaString = objResult.getString("fechas-salida");
+            String fechaSalidaString = objResult.getString("fecha_salida");
             LocalDate fechaSalida = LocalDate.parse(fechaSalidaString);
             objVuelo.setFecha_salida(fechaSalida);
 
 
-            String horaSalidaString = objResult.getString("hora-salida");
+            String horaSalidaString = objResult.getString("hora_salida");
             LocalTime horaSalida = LocalTime.parse(horaSalidaString);
             objVuelo.setHora_salida(horaSalida);
 
 
-            ReservacionPasajeroAvion objRPA = new ReservacionPasajeroAvion(objReservacion, objPasajero, objVuelo);
+            ReservacionPasajeroVuelo objRPA = new ReservacionPasajeroVuelo(objReservacion, objPasajero, objVuelo);
 
             listaDeReservaciones.add(objRPA);
 
@@ -89,8 +89,22 @@ public class ModeloReservacion implements CRUD {
             LocalDateTime fecha_reservacion = objReservacion.getFechaReservacion();
             java.sql.Timestamp fecha_reservacion_sql = java.sql.Timestamp.valueOf(fecha_reservacion);
             objPrepare.setTimestamp(3, fecha_reservacion_sql);
-
             objPrepare.setString(4, objReservacion.getAsiento());
+
+            int filasAfectadas = objPrepare.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                ResultSet objResult = objPrepare.getGeneratedKeys();
+                if (objResult.next()) {
+                    objReservacion.setId_reservacion(objResult.getInt(1));
+                }
+            } else {
+                // Manejar el caso en el que no se insertó ninguna fila
+                System.out.println("Error al insertar la reserva: no se insertaron filas");
+                return null;
+            }
+
+
 
             ResultSet objResult = objPrepare.getGeneratedKeys();
 
@@ -148,7 +162,7 @@ public class ModeloReservacion implements CRUD {
     }
     public Object findByID(int id){
         Reservacion objReservacion;
-        ReservacionPasajeroAvion RPA = new ReservacionPasajeroAvion();
+        ReservacionPasajeroVuelo RPA = new ReservacionPasajeroVuelo();
         Connection objConnection = ConfigDB.openConnection();
 
         try {
@@ -192,7 +206,7 @@ public class ModeloReservacion implements CRUD {
                 objVuelo.setHora_salida(horaSalida);
 
 
-                ReservacionPasajeroAvion objRPA = new ReservacionPasajeroAvion(objReservacion, objPasajero, objVuelo);
+                ReservacionPasajeroVuelo objRPA = new ReservacionPasajeroVuelo(objReservacion, objPasajero, objVuelo);
 
             }
         } catch (SQLException e) {
@@ -231,7 +245,7 @@ public class ModeloReservacion implements CRUD {
         return isDeleted;
     }
 
-    public boolean asientoReservado;
+
 
 
 }
