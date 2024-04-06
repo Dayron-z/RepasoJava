@@ -132,7 +132,7 @@ public class ModelVuelo implements CRUD {
         }
 
 
-
+        ConfigDB.closeConnection();
         return isUpdate;
     }
     public Object findByID(int id){
@@ -203,5 +203,4 @@ public class ModelVuelo implements CRUD {
 
         return isDeleted;
     }
-
 }
