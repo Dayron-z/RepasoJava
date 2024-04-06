@@ -230,4 +230,8 @@ public class ModeloReservacion implements CRUD {
 
         return isDeleted;
     }
+
+    public boolean asientoReservado;
+
+
 }
