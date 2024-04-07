@@ -63,10 +63,15 @@ public class ControllerReservacion {
 
 // Verificar si el asiento excede la capacidad del avión o es inválido
         int capacidad = objModelAvion.obtenerCapacidadDeAsientos(id_avion);
-        if (asientoNumero > capacidad || asientoNumero == 0) {
+        if (asientoNumero > capacidad) {
             System.out.println(capacidad);
             System.out.println(id_avion);
-            JOptionPane.showMessageDialog(null, "El asiento no es válido.");
+            JOptionPane.showMessageDialog(null, "El asiento no es válido. Capacidad de este avion: " + capacidad);
+            return;
+        }
+
+        if (asientoNumero <= 0){
+            JOptionPane.showMessageDialog(null, "No se acepta 0 ni numeros negativos ⚠");
             return;
         }
 
