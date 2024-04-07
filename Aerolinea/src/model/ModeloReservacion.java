@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ModeloReservacion implements CRUD {
@@ -167,7 +168,7 @@ public class ModeloReservacion implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
 
         try {
-            String sql = "SELECT reservacion.*, pasajero.*, avion.* " +
+            String sql = "SELECT reservacion.*, pasajero.*, vuelo.* " +
                     "FROM reservacion " +
                     "INNER JOIN pasajero ON pasajero.id_pasajero = reservacion.id_pasajero " +
                     "INNER JOIN vuelo ON vuelo.id_vuelo = reservacion.id_vuelo " +
@@ -184,6 +185,18 @@ public class ModeloReservacion implements CRUD {
                 objReservacion = new Reservacion();
                 objReservacion.setId_reservacion(objResult.getInt("id_reservacion"));
                 objReservacion.setAsiento(objResult.getString("asiento"));
+                objReservacion.setId_pasajero(objResult.getInt("id_pasajero"));
+                objReservacion.setId_vuelo(objResult.getInt("id_vuelo"));
+
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String fechaReservaString = objResult.getString("fecha_reservacion");
+                LocalDateTime fechaReserva = LocalDateTime.parse(fechaReservaString, formatter);
+                objReservacion.setFechaReservacion(fechaReserva);
+
+
+
+
 
                 Pasajero objPasajero = new Pasajero();
                 objPasajero.setNombre_pasajero(objResult.getString("nombre"));
@@ -197,17 +210,17 @@ public class ModeloReservacion implements CRUD {
                 //Almacenamos en tipo de dato requerido y paraseamos el dato string
                 //Luego podremos setear
 
-                String fechaSalidaString = objResult.getString("fechas-salida");
+                String fechaSalidaString = objResult.getString("fecha_salida");
                 LocalDate fechaSalida = LocalDate.parse(fechaSalidaString);
                 objVuelo.setFecha_salida(fechaSalida);
 
 
-                String horaSalidaString = objResult.getString("hora-salida");
+                String horaSalidaString = objResult.getString("hora_salida");
                 LocalTime horaSalida = LocalTime.parse(horaSalidaString);
                 objVuelo.setHora_salida(horaSalida);
 
 
-                ReservacionPasajeroVuelo objRPA = new ReservacionPasajeroVuelo(objReservacion, objPasajero, objVuelo);
+                 RPA = new ReservacionPasajeroVuelo(objReservacion, objPasajero, objVuelo);
 
             }
         } catch (SQLException e) {
