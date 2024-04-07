@@ -233,7 +233,6 @@ public class ModeloReservacion implements CRUD {
     @Override
     public boolean delete(Object obj) {
         boolean isDeleted = false;
-
         Reservacion objReservacion = (Reservacion) obj;
         Connection objConnection = ConfigDB.openConnection();
 
