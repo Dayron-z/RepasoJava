@@ -108,7 +108,6 @@ public class ControllerReservacion {
 
         return  listaDeReservas;
     }
-
     public static void actualizarReservacion(){
         ModelVuelo objModelVuelo = new ModelVuelo();
         ModelAvion objModelAvion = new ModelAvion();
@@ -198,13 +197,21 @@ public class ControllerReservacion {
         JOptionPane.showMessageDialog(null, "Reservación actualizada con exito");
 
     }
+    public static void eliminarReservacion(){
+        ModeloReservacion objModelReservacion = new ModeloReservacion();
+        Reservacion objReservacion = new Reservacion();
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(listarReservacionString() + "\n Ingrese el id del avion que desea eliminar"));
+
+        objReservacion.setId_reservacion(id);
 
 
+        boolean validacion = objModelReservacion.delete(objReservacion);;
 
+        if (validacion){
+            JOptionPane.showMessageDialog(null, "Reservacion  eliminada con éxito" );
+        }
 
-
-
-
-
+    }
 
 }

@@ -241,9 +241,10 @@ public class ModeloReservacion implements CRUD {
             String sql = "DELETE FROM reservacion WHERE id_reservacion = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
-            objPrepare.setInt(1, objReservacion.getId_vuelo());
+            objPrepare.setInt(1, objReservacion.getId_reservacion());
 
             int filasAfectadas = objPrepare.executeUpdate();
+            System.out.println(filasAfectadas);
 
             if (filasAfectadas > 0){
                 isDeleted = true;
@@ -252,8 +253,6 @@ public class ModeloReservacion implements CRUD {
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-
-
 
 
         return isDeleted;

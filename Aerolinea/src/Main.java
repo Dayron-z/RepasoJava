@@ -90,7 +90,7 @@ public class Main {
                                 ControllerReservacion.crearReservacion();
                                 break;
                             case 2:
-
+                                ControllerReservacion.eliminarReservacion();
                                 break;
                             case 3:
                                 ControllerReservacion.actualizarReservacion();
