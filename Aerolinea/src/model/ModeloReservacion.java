@@ -42,6 +42,7 @@ public class ModeloReservacion implements CRUD {
             objPasajero.setDocumento_identidad(objResult.getString("documento_identidad"));
 
             Vuelo objVuelo = new Vuelo();
+            objVuelo.setId_vuelo(objResult.getInt("id_avion"));
             objVuelo.setDestino(objResult.getString("destino"));
 
             //Obtenemos fecha primero en string

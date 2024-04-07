@@ -146,4 +146,30 @@ public class ModelAvion implements CRUD {
         ConfigDB.closeConnection();
         return objAvion;
     }
+    public int obtenerCapacidadDeAsientos(int id){
+        Connection objConnection = ConfigDB.openConnection();
+        int capacidadEspecifica = 0;
+
+        try {
+            String sql = "SELECT * FROM avion where id_avion = ?";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            objPrepare.setInt(1, id);
+
+            ResultSet objResult = objPrepare.executeQuery();
+
+            if (objResult.next()){
+                 capacidadEspecifica = objResult.getInt("capacidad");
+
+            };
+
+
+
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en model avion obtenerCapacidadDeAsientos " + e.getMessage());
+        }
+
+        return capacidadEspecifica;
+
+    };
+
 }

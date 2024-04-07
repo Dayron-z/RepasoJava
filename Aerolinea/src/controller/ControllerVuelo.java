@@ -24,7 +24,7 @@ public class ControllerVuelo {
 
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             try {
-                String fecha_salida = JOptionPane.showInputDialog("Ingresa la fecha de salida");
+                String fecha_salida = JOptionPane.showInputDialog("Ingresa la fecha de salida (yyyy-MM-dd)");
                 LocalDate fecha = LocalDate.parse(fecha_salida, formatterDate);
                 objVuelo.setFecha_salida(fecha);
             }catch (Exception e){
@@ -34,7 +34,7 @@ public class ControllerVuelo {
 
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
-            String hora_salida = JOptionPane.showInputDialog("Ingresa la hora de salida");
+            String hora_salida = JOptionPane.showInputDialog("Ingresa la hora de salida (HH:mm:ss)");
             LocalTime time = LocalTime.parse(hora_salida, formatterTime);
             objVuelo.setHora_salida(time);
         }catch (Exception e){

@@ -153,6 +153,7 @@ public class ModelVuelo implements CRUD {
                 objVuelo = new Vuelo();
                 objVuelo.setId_vuelo(objResult.getInt("id_vuelo"));
                 objVuelo.setDestino(objResult.getString("destino"));
+                objVuelo.setId_avion(objResult.getInt("id_avion"));
 
                 String fechaSalidaStr = objResult.getString("fecha_salida");
                 LocalDate fechaSalida = LocalDate.parse(fechaSalidaStr);
@@ -165,6 +166,7 @@ public class ModelVuelo implements CRUD {
                 Avion objAvion = new Avion();
                 objAvion.setModelo(objResult.getString("modelo"));
                 objAvion.setCapacidad(objResult.getInt("capacidad"));
+
 
                 vueloConAvion.setAvion(objAvion);
                 vueloConAvion.setVuelo(objVuelo);

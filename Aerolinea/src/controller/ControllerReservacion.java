@@ -1,6 +1,8 @@
 package controller;
 
 import entity.*;
+import model.ModelAvion;
+import model.ModelVuelo;
 import model.ModeloReservacion;
 
 import javax.swing.*;
@@ -11,10 +13,12 @@ import java.time.format.DateTimeParseException;
 
 public class ControllerReservacion {
     public static void crearReservacion() {
+        ModelVuelo objModelVuelo = new ModelVuelo();
+        ModelAvion objModelAvion = new ModelAvion();
         ModeloReservacion objModelReservacion = new ModeloReservacion();
         Reservacion objReservacion = new Reservacion();
-        /*        String asientoReservado = "";*/
         int asientoNumero;
+
 
 
         int id_pasajero = Integer.parseInt(JOptionPane.showInputDialog(ControllerPasajero.listarPasajeroString() + "\n Ingrese el pasajero con quien está asociada la reservacion "));
@@ -32,7 +36,6 @@ public class ControllerReservacion {
             return;
         }
 
-
         try {
             asientoNumero = Integer.parseInt((JOptionPane.showInputDialog("Ingrese el numero de asiento que desea reservar")));
         } catch (NumberFormatException e) {
@@ -40,19 +43,37 @@ public class ControllerReservacion {
             return;
         }
 
-
 // Después de la solicitud y conversión del número de asiento
         boolean asientoReservado = false;
+
         for (Object reserva : objModelReservacion.listar()) {
             ReservacionPasajeroVuelo reservaVuelo = (ReservacionPasajeroVuelo) reserva;
             if (asientoNumero == Integer.parseInt(reservaVuelo.getReservacion().getAsiento())) {
                 JOptionPane.showMessageDialog(null, "El asiento ya se encuentra reservado");
                 asientoReservado = true;
                 break; // Salir del bucle si se encuentra una reserva con el mismo asiento
-            }};
+            }
+        }
 
 
-            if (asientoReservado) {
+        VueloConAvion objVuelo = (VueloConAvion) objModelVuelo.findByID(id_vuelo);
+        System.out.println(objVuelo);
+        int id_avion = objVuelo.getVuelo().getId_avion();
+
+
+// Verificar si el asiento excede la capacidad del avión o es inválido
+        int capacidad = objModelAvion.obtenerCapacidadDeAsientos(id_avion);
+        if (asientoNumero > capacidad || asientoNumero == 0) {
+            System.out.println(capacidad);
+            System.out.println(id_avion);
+            JOptionPane.showMessageDialog(null, "El asiento no es válido.");
+            return;
+        }
+
+
+
+
+        if (asientoReservado) {
                 return; // Si el asiento está reservado, terminar la función
             } else {
                 objReservacion.setAsiento(Integer.toString(asientoNumero));
@@ -62,15 +83,25 @@ public class ControllerReservacion {
             objReservacion.setId_pasajero(id_pasajero);
             objReservacion.setId_vuelo(id_vuelo);
             Reservacion objReservacionString = (Reservacion) objModelReservacion.create(objReservacion);
-            JOptionPane.showMessageDialog(null, "Reservación creada con exito" + objReservacionString);
+            JOptionPane.showMessageDialog(null, "Reservación creada con exito: " + objReservacionString);
 
 
-/*        Implementa validaciones para asegurar que no se exceda la capacidad de los aviones con las
-        reservaciones, y no se debe poder reservar un asiento que ya esta reservado.*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     };
-
     public static void listarReservacion(){
         ModeloReservacion objReservacion = new ModeloReservacion();
 
@@ -94,5 +125,13 @@ public class ControllerReservacion {
 
         return  listaDeReservas;
     }
+
+
+
+
+
+
+
+
 
 }

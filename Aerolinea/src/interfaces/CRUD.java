@@ -8,4 +8,6 @@ public interface CRUD {
     public Object create(Object obj);
     public boolean update(Object obj);
     public boolean delete(Object obj);
+
+
 }
